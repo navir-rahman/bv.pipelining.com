@@ -10,7 +10,9 @@ import { useEffect, useState } from "react"
 import L from "leaflet";
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-
+type Cluster = {
+  getChildCount: () => number;
+};
 interface HomeMapProps {
   searchTerm:string,
   setIsDark: any
@@ -82,6 +84,7 @@ useEffect(()=>{
   lng: number;
 }
 
+
   return (
     <div style={{position: "relative", height: "70vh", width: "100%" }}>
       <MapContainer
@@ -96,7 +99,7 @@ useEffect(()=>{
         }}
       >
         <Circle
-          center={coords}
+          center={[coords[0], coords[1]]}
           radius={radius}
         />
         <TileLayer
@@ -110,7 +113,7 @@ useEffect(()=>{
         <FlyToLocation/>
        
          <MarkerClusterGroup
-            iconCreateFunction={(cluster) => {
+            iconCreateFunction={(cluster: Cluster) => {
               return L.divIcon({
                 html: `<div>${cluster.getChildCount()}</div>`,
                 className: "custom-cluster",

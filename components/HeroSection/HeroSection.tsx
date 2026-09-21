@@ -7,36 +7,35 @@ import {
   useRef,
   useState,
 } from "react";
-import SearchButton from "@/components/Search/SearchButton";
-import { setupRipple } from "@/lib/ripple";
+import { setupRipple, type RippleController } from "@/lib/ripple";
 import OilDropButton from "../OilDropSearch/ OilDropSearch";
+
+
 
 export default function HeroSection() {
   // Reference to the element where the ripple effect is applied
   const mapRef = useRef<HTMLDivElement>(null);
 
   // Reference to the search button so we can find its center position
-  const searchButtonRef =
-    useRef<HTMLButtonElement>(null);
+  // const searchButtonRef =
+  //   useRef<HTMLButtonElement>(null);
+  const searchButtonRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    let rippleController: any;
+useEffect(() => {
+  let rippleController: RippleController | undefined;
 
-    setupRipple(mapRef, searchButtonRef).then((controller) => {
-      rippleController = controller;
+  setupRipple(mapRef, searchButtonRef).then((controller) => {
+    rippleController = controller;
 
-      // If map mode is already active, keep ripple paused
-      if (mapActive) {
-        controller.pause();
-      }
-    });
+    if (mapActive && controller) {
+      controller.pause();
+    }
+  });
 
-    return () => {
-      if (rippleController) {
-        rippleController.cleanup();
-      }
-    };
-  }, []);
+  return () => {
+    rippleController?.cleanup();
+  };
+}, []);
 
   // Search input value
   const [searchTerm, setSearchTerm] = useState("");
@@ -47,20 +46,6 @@ export default function HeroSection() {
 
   // Controls whether the map/search UI is active
   const [mapActive, setMapActive] = useState(false);
-
-  // Handle the search form submission
-  // const handleSearch = (
-  //   e: FormEvent<HTMLFormElement>,
-  // ) => {
-  //   e.preventDefault();
-
-  //   setMapActive(true);
-
-  //   console.log({
-  //     searchTerm,
-  //     location,
-  //   });
-  // };
 
   const [isdark, setIsDark] = useState(false);
 
@@ -171,13 +156,9 @@ export default function HeroSection() {
                 </p>
               </div>
 
-              {/* <SearchButton
-                ref={searchButtonRef}
-                onClick={() => setMapActive(true)}
-                /> */}
             </div>
           </div>
-           <div
+          <div
            ref={searchButtonRef}
             className={`absolute left-6 top-[360px] w-[calc(100%-48px)] max-w-[700px] md:left-10 lg:left-12 flex `}
           >
