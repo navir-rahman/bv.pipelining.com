@@ -58,7 +58,6 @@ const mapRef = useRef<L.Map | null>(null);
     setCoordinates({lat: lat,lng: lng,});
     markerRef.current?.setLatLng([lat, lng]);
     mapRef.current?.flyTo([lat, lng], 15,{duration: 2,});
-    // console.log(data);
   }}
 >
   <input

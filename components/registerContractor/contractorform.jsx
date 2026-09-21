@@ -10,7 +10,7 @@ export default function ContractorRegistrationForm() {
     null
   );
 
-  console.log(state)
+
   return (
     <div className="max-w-2xl mx-auto my-10 p-8 bg-white border border-slate-200 rounded-xl shadow-sm font-sans text-slate-800">
       <h1 className="text-2xl font-bold text-slate-900 mb-6">

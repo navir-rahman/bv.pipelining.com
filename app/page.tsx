@@ -15,7 +15,7 @@ export default  function Home() {
 //     dbStatus = `Connection failed: ${error.message}`;
 //   }
 
-const handleSearch =()=>{console.log("clicked")}
+
   
 
   return (

@@ -51,7 +51,7 @@ export async function createUsersTable() {
     )
   `;
 
-  console.log('✅ "users" table ensured/created in PostgreSQL.');
+
 }
 
 /**

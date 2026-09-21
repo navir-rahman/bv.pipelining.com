@@ -34,7 +34,6 @@ export async function handleContractorRegistration(
   // Extract values from FormData
   const companyName = formData.get("company_name")?.toString().trim();
   const firstName = formData.get("first_name")?.toString().trim();
-  console.log(firstName)
   const lastName = formData.get("last_name")?.toString().trim();
   const repEmail = formData.get("rep_email")?.toString().trim();
   const repPhone = formData.get("rep_phone")?.toString().trim();
@@ -109,7 +108,6 @@ export async function handleContractorRegistration(
 
   try {
     // Process registration data (Database write, API payload, etc.)
-    console.log("Saving Registration:", registrationData);
 
     return {
       success: true,

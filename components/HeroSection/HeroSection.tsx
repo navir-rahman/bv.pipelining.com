@@ -40,7 +40,7 @@ useEffect(() => {
   // Search input value
   const [searchTerm, setSearchTerm] = useState("");
 
-  // console.log(searchTerm)
+
   // Location input value
   const [location, setLocation] = useState("");
 
