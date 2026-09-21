@@ -1,0 +1,54 @@
+{
+  "version": 8,
+  "name": "Empty Style",
+  "metadata": {},
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "url": "https://api.maptiler.com/tiles/v3-openmaptiles/tiles.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL"
+    }
+  },
+  "sprite": "",
+  "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
+  "layers": [
+{
+  "id": "1",
+  "type": "background",
+  "paint": {
+    "background-color": "rgba(2, 16, 46, 1)"
+  },
+  "minzoom": 0,
+  "maxzoom": 24
+},
+    {
+      "id": "2",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "water",
+      "maxzoom": 14,
+      "paint": {"fill-color": "rgba(21, 73, 116, 1)"}
+    },
+    {
+      "id": "boundary",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "boundary",
+      "paint": {"line-color": "rgba(72, 20, 199, 1)"}
+    },
+    {
+      "id": "",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation_name",
+      "paint": {"line-color": "rgba(238, 236, 239, 1)"}
+    },
+    {
+      "id": "place",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "place",
+      "paint": {"fill-color": "rgba(255, 255, 255, 1)"}
+    }
+  ],
+  "id": "u2susa9"
+}

@@ -1,0 +1,118 @@
+.filters { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* wrapper: 60×60 inline box. Animation overflows visibly from here. */
+.wrap {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  vertical-align: middle;
+  --reveal: 0;
+}
+
+.shadow {
+  position: absolute;
+  bottom: 0; left: 50%;
+  width: 70px; height: 14px;
+  margin-left: -35px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(80,180,240,.55) 0%, rgba(80,180,240,0) 70%);
+  filter: blur(2px);
+  opacity: 0;
+  transform: scale(.5);
+  pointer-events: none;
+  will-change: transform, opacity, left;
+}
+
+/* search: starts hidden, width + padding driven by --reveal */
+.search {
+  position: absolute;
+  left: 0; height: 100%;
+  top: 200px;              /* ← lands where the button lands */
+  height: 60px;            /* keep it as tall as the button */
+  display: none;
+  align-items: center;
+  width: calc(340px * var(--reveal));
+  padding: 0 calc(22px * var(--reveal)) 0 calc(70px * var(--reveal));
+  border-radius: 30px;
+  /* background: rgba(255,255,255,.06); */
+  background: #071b2ac7;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 18px 40px -18px rgba(0,0,0,.85), inset 0 2px 0 rgba(255,255,255,.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  pointer-events: none;
+  overflow: hidden;
+  will-change: width, padding;
+}
+
+.input {
+  flex: 1; min-width: 0; height: 100%;
+  padding: 20px;
+  border: 0; outline: 0; background: transparent;
+  appearance: none; -webkit-appearance: none;
+  font: inherit; font-size: 15px;
+  /* color: #eaf6ff; letter-spacing: .2px; */
+}
+/* .input::placeholder { color: rgba(200,225,245,.45); } */
+.input::-webkit-search-cancel-button { display: none; }
+
+.btn {
+  position: absolute;
+  inset: 0;
+  border: 0; padding: 0; margin: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  overflow: visible;
+  z-index: 2;
+}
+
+.btnSquash {
+  position: absolute; inset: 0;
+  transform-origin: 50% 100%;
+  overflow: visible;
+  will-change: transform;
+}
+
+.gooWrap {
+  position: absolute;
+  left: -55px; top: -55px;
+  width: 170px; height: 170px;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at var(--hx,34%) var(--hy,28%),
+    #fff 0%, #e6f6ff 12%, #a8e2ff 26%, #4fb2e8 58%, #0a4a7a 100%);
+  will-change: transform, filter, background;
+}
+.blobMain  { left: 55px; top: 55px; width: 60px; height: 60px; }
+.blobTrail { left: 65px; top: 65px; width: 40px; height: 40px; }
+.blobMicro { left: 70px; top: 70px; width: 22px; height: 22px; opacity: .85; }
+
+.blobRipple {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 60px; height: 60px;
+  margin: -30px 0 0 -30px;
+  border-radius: 50%;
+  border: 2px solid rgba(180,230,255,.65);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity, border-width;
+}
+
+.btnIcon {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  color: #0b2a42;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  z-index: 2;
+}
+.btnIcon svg { display: block; }
