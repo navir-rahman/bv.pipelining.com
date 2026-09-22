@@ -17,7 +17,7 @@ function ShowHomemap({searchTerm,isdark, setIsDark}: ShowHomeMap) {
 
 
   return (
-    <div>
+    <>
       <button
         type="button"
         onClick={() => setIsDark(!isdark)}
@@ -27,7 +27,7 @@ function ShowHomemap({searchTerm,isdark, setIsDark}: ShowHomeMap) {
       </button>
 
       <HomeMap searchTerm={searchTerm} setIsDark={setIsDark} isdark={isdark} />
-    </div>
+    </>
   );
 }
 

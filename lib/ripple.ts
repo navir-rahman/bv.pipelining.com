@@ -60,7 +60,11 @@ export async function setupRipple(
       if (!mapRef.current || !searchButtonRef.current) return;
 
       const targetRect = mapRef.current.getBoundingClientRect();
-      const buttonRect = searchButtonRef.current.getBoundingClientRect();
+      // const buttonRect = searchButtonRef.current.getBoundingClientRect();
+      
+      const button = searchButtonRef.current.querySelector("button"); 
+      if (!button) return; 
+      const buttonRect = button.getBoundingClientRect();
 
       const x = buttonRect.left + buttonRect.width / 2 - targetRect.left;
       const y = buttonRect.top + buttonRect.height / 2 - targetRect.top;

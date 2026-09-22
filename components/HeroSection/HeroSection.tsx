@@ -16,7 +16,7 @@ export default function HeroSection() {
   // Reference to the element where the ripple effect is applied
   const mapRef = useRef<HTMLDivElement>(null);
 
-  // Reference to the search button so we can find its center position
+  // Reference to the search button so we can find itzs center position
   // const searchButtonRef =
   //   useRef<HTMLButtonElement>(null);
   const searchButtonRef = useRef<HTMLDivElement>(null);
@@ -64,7 +64,7 @@ useEffect(() => {
       <section
         onClick={() => setMapActive(true)}
         ref={mapRef}
-        className="relative min-h-[650px] md:min-h-[720px] w-full overflow-hidden bg-[#031522] text-white"
+        className="relative p-5 h-[80vh] w-full overflow-hidden bg-[#031522] text-white"
       >
         <div className="absolute inset-0 z-0">
           <ShowHomemap
@@ -124,7 +124,7 @@ useEffect(() => {
           </div>
 
           <div
-            className={`absolute left-6 top-[360px] w-[calc(100%-48px)] max-w-[700px] md:left-10 lg:left-12 pointer-events-auto z-30 rounded-[28px] border border-white/20 bg-[#071b2a]/85 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-700 ease-in-out ${
+            className={`absolute left-6 top-[400px] w-[calc(100%-48px)] max-w-[700px] md:left-10 lg:left-12 pointer-events-auto z-30 rounded-[28px] border border-white/20 bg-[#071b2a]/85 p-2 shadow-[0_20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all duration-700 ease-in-out ${
               mapActive
                 ? "opacity-0 -translate-y-8"
                 : "opacity-100 translate-y-0"
@@ -160,7 +160,7 @@ useEffect(() => {
           </div>
           <div
            ref={searchButtonRef}
-            className={`absolute left-6 top-[360px] w-[calc(100%-48px)] max-w-[700px] md:left-10 lg:left-12 flex `}
+            className={`absolute left-6 top-[400px] w-[calc(100%-48px)] max-w-[700px] md:left-10 lg:left-12 flex `}
           >
                 <OilDropButton mapActive={mapActive}  className="z-50 my-2 ml-auto mr-5 "onSubmit={(q) => setSearchTerm(q)} />
           </div>

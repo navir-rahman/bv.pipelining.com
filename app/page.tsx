@@ -3,6 +3,8 @@
 // import { sql } from '@/lib/db';
 
 import HeroSection from "@/components/HeroSection/HeroSection";
+import HowItWorksSection from "@/components/homepage component/HowItWorksSection";
+import TopContractorsSection from "@/components/homepage component/TopContractorsSection";
 
 
 export default  function Home() {
@@ -20,12 +22,14 @@ export default  function Home() {
 
   return (
 
-    <main className="p-8">
+    <main >
        
         {/* hero */}
         <HeroSection></HeroSection>
 
-       
+       <TopContractorsSection></TopContractorsSection>
+       <HowItWorksSection></HowItWorksSection>
+       <TopContractorsSection></TopContractorsSection>
 
       
        
