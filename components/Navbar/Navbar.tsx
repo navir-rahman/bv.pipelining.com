@@ -7,7 +7,9 @@ import NavLink from "./NavLink";
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Users', href: '/users' },
-  { name: 'New user registration', href: '/registerContractor'}
+  { name: 'New user registration', href: '/registerContractor'},
+  { name: 'All Contractors', href: '/all_contractor'},
+
  
 ];
 

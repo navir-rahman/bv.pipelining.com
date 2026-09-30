@@ -1,14 +1,7 @@
-// import ShowMap from '@/components/Map/ShowMap'
-// import ContractorRegistrationForm from '../../components/registerContractor/contractorform'
+import React from 'react'
 
-function page() {
+export default function page() {
   return (
-    <>
-    {/* <ShowMap></ShowMap>
-    <ContractorRegistrationForm></ContractorRegistrationForm> */}
-    form
-    </>
+    <div>page</div>
   )
 }
-
-export default page

@@ -4,10 +4,9 @@
 /* .leaflet-tile {
   filter: brightness(40%) contrast(110%) !important;
 } */
-:root {
+/* :root {
   --background: #a3c9cf;
-  --foreground: #171717;
-}
+} */
 
 @theme inline {
 
@@ -17,12 +16,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #62666b;
+    /* --background: #62666b; */
     /* --foreground: #ededed; */
   }
 }
 
 body {
+
   background: var(--background);
   /* color: var(--foreground); */
   font-family: Arial, Helvetica, sans-serif;
@@ -60,4 +60,48 @@ body {
   color: white;
   font-weight: 700;
   border: 2px solid white;
+}
+
+
+
+/* animation  */
+@keyframes appear {
+  from {
+    opacity: 0;
+    clip-path: inset(100% 100% 0 0);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.scroll_reveal {
+  animation: appear linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+#progress{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: firebrick;
+  transform-origin: 0 50%;
+  animation: growprogress 2s linear;
+  animation-timeline: scroll();
+}
+
+@keyframes growprogress {
+  from {
+    transform: scaleX(0);
+
+
+  }
+  to{
+    transform: scaleX(1);
+  }
 }
