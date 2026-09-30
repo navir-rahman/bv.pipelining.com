@@ -11,7 +11,14 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-export default function Filter() {
+
+type FilterProps = {
+  area: string;
+  setArea: React.Dispatch<React.SetStateAction<string>>;
+};
+
+
+export default function Filter({ area, setArea }: FilterProps) {
   return (
     <div
       className=" 
@@ -71,15 +78,7 @@ export default function Filter() {
               Filters
             </h2>
 
-            <button
-              className="
-                text-[12px] font-medium text-[#f48217]
-                transition-colors duration-200
-                hover:text-[#ffb15c]
-              "
-            >
-              Clear all
-            </button>
+            
           </div>
 
           {/* Location */}
@@ -94,6 +93,7 @@ export default function Filter() {
 
             <div className="relative">
               <select
+                onChange={(e) => setArea(e.target.value)}
                 defaultValue=""
                 className="
                   h-[42px] w-full appearance-none
@@ -109,22 +109,60 @@ export default function Filter() {
                   focus:ring-1 focus:ring-[#00f0ff]/20
                 "
               >
-                <option value="" disabled>
+                <option value="" >
                   Select a state
                 </option>
 
-                <option>Alabama</option>
-                <option>Alaska</option>
-                <option>Arizona</option>
-                <option>Arkansas</option>
-                <option>California</option>
-                <option>Colorado</option>
-                <option>Connecticut</option>
-                <option>Delaware</option>
-                <option>Florida</option>
-                <option>Georgia</option>
-                <option>Texas</option>
-                <option>Washington</option>
+  <option value="AL">Alabama</option>
+  <option value="AK">Alaska</option>
+  <option value="AZ">Arizona</option>
+  <option value="AR">Arkansas</option>
+  <option value="CA">California</option>
+  <option value="CO">Colorado</option>
+  <option value="CT">Connecticut</option>
+  <option value="DE">Delaware</option>
+  <option value="FL">Florida</option>
+  <option value="GA">Georgia</option>
+  <option value="HI">Hawaii</option>
+  <option value="ID">Idaho</option>
+  <option value="IL">Illinois</option>
+  <option value="IN">Indiana</option>
+  <option value="IA">Iowa</option>
+  <option value="KS">Kansas</option>
+  <option value="KY">Kentucky</option>
+  <option value="LA">Louisiana</option>
+  <option value="ME">Maine</option>
+  <option value="MD">Maryland</option>
+  <option value="MA">Massachusetts</option>
+  <option value="MI">Michigan</option>
+  <option value="MN">Minnesota</option>
+  <option value="MS">Mississippi</option>
+  <option value="MO">Missouri</option>
+  <option value="MT">Montana</option>
+  <option value="NE">Nebraska</option>
+  <option value="NV">Nevada</option>
+  <option value="NH">New Hampshire</option>
+  <option value="NJ">New Jersey</option>
+  <option value="NM">New Mexico</option>
+  <option value="NY">New York</option>
+  <option value="NC">North Carolina</option>
+  <option value="ND">North Dakota</option>
+  <option value="OH">Ohio</option>
+  <option value="OK">Oklahoma</option>
+  <option value="OR">Oregon</option>
+  <option value="PA">Pennsylvania</option>
+  <option value="RI">Rhode Island</option>
+  <option value="SC">South Carolina</option>
+  <option value="SD">South Dakota</option>
+  <option value="TN">Tennessee</option>
+  <option value="TX">Texas</option>
+  <option value="UT">Utah</option>
+  <option value="VT">Vermont</option>
+  <option value="VA">Virginia</option>
+  <option value="WA">Washington</option>
+  <option value="WV">West Virginia</option>
+  <option value="WI">Wisconsin</option>
+  <option value="WY">Wyoming</option>
               </select>
 
               <ChevronDown

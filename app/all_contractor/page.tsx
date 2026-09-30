@@ -49,7 +49,7 @@ const listContentRef = useRef<HTMLDivElement | null>(null);
       window.removeEventListener("resize", updateSize);
     };
   }, []);
-  console.log(progress);
+ 
   // ==========================================
   // FETCH CONTRACTORS
   // ==========================================
@@ -111,6 +111,10 @@ useEffect(() => {
   const listingEnd = listingStart + listScrollDistance;
 
   const mapExitOffset = Math.max(scrollY - listingEnd, 0);
+
+
+  const [area, setArea] = useState("")
+
   return (
     <main className="relative">
       {/* <section className="h-lvh">df</section> */}
@@ -198,11 +202,11 @@ useEffect(() => {
           style={{
             top: `${50 - mapExitOffset}px`,
             width: `${70 - progress * 40}%`,
-            height: `${100 - progress * 50}vh`,
+            height: `${100 - progress * 63}vh`,
             transform: `translate3d(${-progress * 70}vw, 0, 0)`,
           }}
         >
-          <GlassStatesMap />
+          <GlassStatesMap area={area} setArea={setArea } />
         </div>
 
 
@@ -217,7 +221,7 @@ useEffect(() => {
         >
           <div className="flex p-6">
             <div className="w-1/3 h-fit">
-              <Filter />
+              <Filter area={area} setArea={setArea } />
             </div>
 
             {/* CONTRACTOR CONTENT */}
@@ -228,7 +232,7 @@ useEffect(() => {
                 transform: `translate3d(0, -${listingOffset}px, 0)`,
               }}
             >
-              {contractorsData.slice(0, 5).map((contractor, index) => {
+              {contractorsData.filter((contractor) => !area || contractor["State"] === area).slice(0, 5).map((contractor, index) => {
                 if (!contractor) return null;
 
                 return (

@@ -1,4 +1,5 @@
  "use client" 
+import { stateAbbreviations } from "@/lib/statesName";
  import dynamic from "next/dynamic";
 
 
@@ -20,13 +21,18 @@ const badges = [
   { name: "NY", coordinates: [-74.0060, 40.7128], count: 16 },
 ];
 
+type FilterProps = {
+  area: string;
+  setArea: React.Dispatch<React.SetStateAction<string>>;
+};
 
 
 
-const GlassStatesMap = () => {
+const GlassStatesMap = ({ area, setArea }: FilterProps) => {
   const [hoveredState, setHoveredState] = useState(null);
   const [activeState, setActiveState] = useState(null);
   const [tooltip, setTooltip] = useState({ show: false, x: 0, y: 0, name: "" });
+
 
   // Glass color logic using 8-Digit Hex Codes (#RRGGBBAA)
 const getStateStyles = (geoId: any, stateName: any) => {
@@ -35,8 +41,8 @@ const getStateStyles = (geoId: any, stateName: any) => {
   // 1. ACTIVE STATE (Brightest Neon - White core with Purple glow)
   if (activeState === stateName) {
     return { 
-      fill: "rgba(255, 255, 255, 0.4)", // White at 40%
-      stroke: "#FFFFFF",                 // Solid white core
+      fill: "rgba(167, 139, 250, 0.2)", // White at 40%
+      stroke: "#A78BFA",                 // Solid white core
       strokeWidth: "2px",                // Thicker border for emphasis
       // The Neon Glow: Inner tight white glow, outer wide purple glow
       filter: "drop-shadow(0 0 6px #FFFFFF) drop-shadow(0 0 15px #A78BFA)" 
@@ -124,7 +130,7 @@ const getStateStyles = (geoId: any, stateName: any) => {
         <div className="tooltip" style={{ top: tooltip.y + 15, left: tooltip.x + 15 }}>
           <div style={{ fontWeight: "700", fontSize: "14px" }}>{tooltip.name}</div>
           <div style={{ fontSize: "12px", opacity: 0.8, marginTop: "4px" }}>
-            Verified: {Math.floor(Math.random() * 50) + 5}
+            Verified: {"not set"}
           </div>
         </div>
       )}
@@ -132,7 +138,7 @@ const getStateStyles = (geoId: any, stateName: any) => {
       <ComposableMap
         projection="geoAlbersUsa"
         projectionConfig={{ scale: 1000 }}
-        style={{ width: "100%", height: "100%", overflow: "visible",padding:"30px" ,paddingTop:"-30px", marginTop:"-50px" }}
+        style={{ width: "100%", height: "100%", overflow: "visible" ,  }}
       >
         <defs>
           {/* Drop shadow filter - floodColor uses Hex */}
@@ -180,7 +186,9 @@ const getStateStyles = (geoId: any, stateName: any) => {
                       setTooltip((prev) => ({ ...prev, show: false }));
                     }}
                     onClick={() => {
-                      setActiveState(stateName === activeState ? null : stateName);
+                        const newState = stateName === activeState ? null : stateName;
+                        setActiveState(newState);
+                        setArea(newState ? stateAbbreviations[newState] || "" : "");
                     }}
                   />
                 );
