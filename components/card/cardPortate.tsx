@@ -5,25 +5,16 @@ import React, { useState, useRef, useCallback, ReactNode } from "react";
 export type CardCategory = "ai-security" | "cloud" | "pipeline" | string;
 
 export interface cardPortate {
-  /** Title of the card release */
   title: string;
-  /** Brief description or abstract */
   description: string;
-  /** Formatted release date string */
   date: string;
-  /** Category badge text */
   category: CardCategory;
-  /** Text shown on the isometric 3D platform badge (e.g. "AI", "IaC", "CI/CD") */
   platformText: string;
-  /** Action link text */
   actionText?: string;
-  /** Optional click handler or link path */
   onClick?: () => void;
-  /** Optional override for custom stage illustrations/graphics */
   customStage?: ReactNode;
-  /** Preset color theme variant for accent glows and platforms */
   variant?: "orange-cyan" | "cyan-purple" | "blue-emerald" | "emerald-cyan";
-  href?: "";
+  href?: string;
 }
 
 export const CardPortate: React.FC<cardPortate> = ({

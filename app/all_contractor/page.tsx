@@ -5,15 +5,25 @@ import Filter from "@/components/filter/Filter";
 import GlassStatesMap from "@/components/Map/reactSimpleMap/ReactSimpleMap";
 import { useEffect, useRef, useState } from "react";
 
+type Contractor = {
+  "Company Name"?: string;
+  "Claim Evidence"?: string;
+  Website?: string;
+  State?: string;
+};
+
 export default function Page() {
   const [progress, setProgress] = useState(0);
   const [scrollY, setScrollY] = useState(0);
   const [listScrollDistance, setListScrollDistance] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(0);
 
+  const [contractorsData, setContractorsData] = useState<Contractor[]>([]);
+  const [area, setArea] = useState("");
 
-const listViewportRef = useRef<HTMLDivElement | null>(null);
-const listContentRef = useRef<HTMLDivElement | null>(null);
+  const listViewportRef = useRef<HTMLDivElement | null>(null);
+  const listContentRef = useRef<HTMLDivElement | null>(null);
+
   // ==========================================
   // PAGE SCROLL
   // ==========================================
@@ -29,13 +39,13 @@ const listContentRef = useRef<HTMLDivElement | null>(null);
     function updateSize() {
       setViewportHeight(window.innerHeight);
 
-      if (listViewportRef.current && listContentRef.current) {
-        const distance =
-          listContentRef.current.scrollHeight -
-          listViewportRef.current.clientHeight;
+      const viewport = listViewportRef.current;
+      const content = listContentRef.current;
 
-        setListScrollDistance(Math.max(0, distance));
-      }
+      if (!viewport || !content) return;
+
+      const distance = content.scrollHeight - viewport.clientHeight;
+      setListScrollDistance(Math.max(0, distance));
     }
 
     handleScroll();
@@ -49,18 +59,26 @@ const listContentRef = useRef<HTMLDivElement | null>(null);
       window.removeEventListener("resize", updateSize);
     };
   }, []);
- 
+
   // ==========================================
   // FETCH CONTRACTORS
   // ==========================================
-  const [contractorsData, setContractorsData] = useState([]);
-
   useEffect(() => {
     async function getContractor() {
       try {
         const response = await fetch("/contractors.json");
-        const data = await response.json();
-        setContractorsData(data);
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch contractors: ${response.status}`);
+        }
+
+        const data: unknown = await response.json();
+
+        if (!Array.isArray(data)) {
+          throw new Error("contractors.json must contain an array");
+        }
+
+        setContractorsData(data as Contractor[]);
       } catch (error) {
         console.error("Failed to load contractors:", error);
       }
@@ -72,28 +90,33 @@ const listContentRef = useRef<HTMLDivElement | null>(null);
   // ==========================================
   // RECALCULATE LIST HEIGHT
   // ==========================================
-useEffect(() => {
-  const viewport = listViewportRef.current;
-  const content = listContentRef.current;
+  useEffect(() => {
+    const viewport = listViewportRef.current;
+    const content = listContentRef.current;
 
-  if (!viewport || !content) return;
+    if (!viewport || !content) return;
 
-  const updateListHeight = () => {
-    const distance =
-      content.scrollHeight - viewport.clientHeight;
+    const updateListHeight = () => {
+      const distance = content.scrollHeight - viewport.clientHeight;
+      setListScrollDistance(Math.max(0, distance));
+    };
 
-    setListScrollDistance(Math.max(0, distance));
-  };
+    updateListHeight();
 
-  updateListHeight();
+    const observer = new ResizeObserver(updateListHeight);
 
-  const observer = new ResizeObserver(updateListHeight);
+    observer.observe(content);
+    observer.observe(viewport);
 
-  observer.observe(content);
-  observer.observe(viewport);
+    return () => observer.disconnect();
+  }, [contractorsData, area]);
 
-  return () => observer.disconnect();
-}, [contractorsData]);
+  // ==========================================
+  // FILTERED CONTRACTORS
+  // ==========================================
+  const filteredContractors = contractorsData.filter(
+    (contractor) => !area || contractor["State"] === area
+  );
 
   // ==========================================
   // CONTRACTOR LIST PROGRESS
@@ -102,37 +125,36 @@ useEffect(() => {
 
   const listingProgress =
     listScrollDistance > 0
-      ? Math.min(Math.max((scrollY - listingStart) / listScrollDistance, 0), 1)
+      ? Math.min(
+          Math.max((scrollY - listingStart) / listScrollDistance, 0),
+          1
+        )
       : 0;
 
   const listingOffset = listingProgress * listScrollDistance;
 
   const sectionHeight = viewportHeight * 2 + listScrollDistance;
+
   const listingEnd = listingStart + listScrollDistance;
 
   const mapExitOffset = Math.max(scrollY - listingEnd, 0);
 
 
-  const [area, setArea] = useState("")
+useEffect(() => {
+  if (!area) return;
+
+  window.scrollTo({
+    top: window.innerHeight,
+    behavior: "smooth",
+  });
+}, [area]);
 
   return (
     <main className="relative">
-      {/* <section className="h-lvh">df</section> */}
-      <section
-        className="relative map_bg"
-        style={{ height: `${sectionHeight}px` }}
-      >
-{/* top */}
-
-
-
-
+      <section className="relative map_bg before:block before:h-screen before:content-['']" style={{ height: `${sectionHeight}px` }}>
         {/* TOP LEFT */}
-        <div  className="fixed top-10 left-40 h-[50vh] w-[70%]  will-change-transform"
-          style={{
-            transform: `translate3d(${-progress * 30}vw, 0, 0)`,
-          }}
-        >
+
+        <div className="fixed top-10 left-40 h-[50vh] w-[70%] will-change-transform" style={{ transform: `translate3d(${-progress * 30}vw, 0, 0)` }}>
           <div className="w-[30%] h-full">
             <div className="py-20 flex flex-col max-w-lg">
               <p className="text-xs font-bold tracking-widest text-purple-600 uppercase mb-4">
@@ -150,8 +172,7 @@ useEffect(() => {
               </h1>
 
               <p className="text-lg text-slate-500 mb-8 max-w-md leading-relaxed">
-                Search, explore and connect with verified trenchless
-                professionals across the U.S.
+                Search, explore and connect with verified trenchless professionals across the U.S.
               </p>
 
               <div className="flex items-center gap-6 bg-white/60 backdrop-blur-md border border-white/80 rounded-full px-6 py-3 shadow-sm w-fit">
@@ -196,59 +217,36 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* TOP RIGHT */}
-        <div
-          className=" fixed -right-10 z-10   will-change-transform"
-          style={{
-            top: `${50 - mapExitOffset}px`,
-            width: `${70 - progress * 40}%`,
-            height: `${100 - progress * 63}vh`,
-            transform: `translate3d(${-progress * 70}vw, 0, 0)`,
-          }}
-        >
-          <GlassStatesMap area={area} setArea={setArea } />
+        {/* TOP RIGHT MAP */}
+
+        <div className="fixed -right-10 z-10 will-change-transform" style={{ top: `${50 - mapExitOffset}px`, width: `${70 - progress * 40}%`, height: `${100 - progress * 63}vh`, transform: `translate3d(${-progress * 70}vw, 0, 0)` }}>
+          <GlassStatesMap area={area} setArea={setArea} />
         </div>
 
-
-
-        {/* BOTTOM LEFT */}
-        <div className="sticky h-screen left-0  w-[0] bg-[#1f202c]"></div>
-
         {/* CONTRACTOR VIEWPORT */}
-        <div
-          ref={listViewportRef}
-          className="sticky top-[40px] ml-auto h-[calc(100vh-40px)] w-[100%] overflow-hidden bg-[#1f202c]"
-        >
+
+        <div ref={listViewportRef} className="sticky top-[40px] ml-auto h-[calc(100vh-40px)] w-full overflow-hidden bg-[#1f202c]">
           <div className="flex p-6">
+            {/* FILTER */}
+
             <div className="w-1/3 h-fit">
-              <Filter area={area} setArea={setArea } />
+              <Filter area={area} setArea={setArea} />
             </div>
 
             {/* CONTRACTOR CONTENT */}
-            <div
-              ref={listContentRef}
-              className="w-2/3 flex flex-col gap-6 p-6 will-change-transform"
-              style={{
-                transform: `translate3d(0, -${listingOffset}px, 0)`,
-              }}
-            >
-              {contractorsData.filter((contractor) => !area || contractor["State"] === area).slice(0, 5).map((contractor, index) => {
-                if (!contractor) return null;
 
-                return (
-                  <CardPortate
-                    key={index}
-                    date="May 5, 2024"
-                    category="AI Security"
-                    title={contractor?.["Company Name"]}
-                    description={contractor?.["Claim Evidence"]}
-                    platformText=""
-                    
-                   
-                    href={contractor?.["Website"]}
-                  />
-                );
-              })}
+            <div ref={listContentRef} className="w-2/3 scroll-smooth flex flex-col gap-6 p-6 will-change-transform" style={{ height: `${viewportHeight * 2}px`,transform: `translate3d(0, -${listingOffset}px, 0)` }}>
+              {filteredContractors.map((contractor, index) => (
+                <CardPortate
+                  key={`${contractor["Company Name"] ?? "contractor"}-${index}`}
+                  date="May 5, 2024"
+                  category="AI Security"
+                  title={contractor["Company Name"] ?? ""}
+                  description={contractor["Claim Evidence"] ?? ""}
+                  platformText=""
+                  href={contractor["Website"] ?? "#"}
+                />
+              ))}
             </div>
           </div>
         </div>

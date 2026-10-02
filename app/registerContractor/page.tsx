@@ -1,7 +1,9 @@
-import React from 'react'
 
+import ContractorForm from '../../components/form/Form'
 export default function page() {
   return (
-    <div>page</div>
+    <>
+      <ContractorForm />
+    </>
   )
 }

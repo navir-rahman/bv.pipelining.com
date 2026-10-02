@@ -24,6 +24,7 @@ const badges = [
 type FilterProps = {
   area: string;
   setArea: React.Dispatch<React.SetStateAction<string>>;
+
 };
 
 
