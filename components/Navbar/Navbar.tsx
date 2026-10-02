@@ -9,6 +9,9 @@ const navLinks = [
   { name: 'Users', href: '/users' },
   { name: 'New user registration', href: '/registerContractor' },
   { name: 'All Contractors', href: '/all_contractor' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Single Post', href: '/singleBlog' },
+  
 ];
 
 function Navbar() {

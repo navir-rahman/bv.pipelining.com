@@ -12,7 +12,7 @@ type Contractor = {
   State?: string;
 };
 
-export default function Page() {
+export default function page() {
   const [progress, setProgress] = useState(0);
   const [scrollY, setScrollY] = useState(0);
   const [listScrollDistance, setListScrollDistance] = useState(0);
