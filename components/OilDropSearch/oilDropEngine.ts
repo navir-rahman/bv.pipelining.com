@@ -272,16 +272,19 @@ export class OilDropEngine {
     blobMicro.style.opacity = (0.85 - dM * 0.55).toFixed(3);
 
     /* iridescence + bloom */
-    const speed = Math.hypot(this.rollVel, this.vy);
-    this.bloom *= Math.pow(DECAY, dt);
-    const hue = speed * HUE;
-    blobMain.style.filter =
-      `hue-rotate(${hue.toFixed(1)}deg) saturate(${(1 + speed * SAT + this.bloom * 0.4).toFixed(3)}) brightness(${(1 + this.bloom * 0.7).toFixed(3)})`;
-    blobTrail.style.filter =
-      `hue-rotate(${(hue + dT * 40).toFixed(1)}deg) saturate(${(1 + speed * SAT + dT * 0.55).toFixed(3)}) brightness(${(1 - dT * 0.22 + this.bloom * 0.3).toFixed(3)})`;
-    blobMicro.style.filter =
-      `hue-rotate(${(hue + dM * 70).toFixed(1)}deg) saturate(${(1 + speed * SAT + dM * 0.85).toFixed(3)}) brightness(${(1 - dM * 0.35 + this.bloom * 0.2).toFixed(3)})`;
+/* orange bloom */
+const speed = Math.hypot(this.rollVel, this.vy);
+this.bloom *= Math.pow(DECAY, dt);
 
+blobMain.style.filter =
+  `saturate(${(1 + speed * SAT + this.bloom * 0.4).toFixed(3)}) brightness(${(1 + this.bloom * 0.7).toFixed(3)})`;
+
+blobTrail.style.filter =
+  `saturate(${(1 + speed * SAT + dT * 0.2).toFixed(3)}) brightness(${(1 - dT * 0.12 + this.bloom * 0.2).toFixed(3)})`;
+
+blobMicro.style.filter =
+  `saturate(${(1 + speed * SAT + dM * 0.2).toFixed(3)}) brightness(${(1 - dM * 0.2 + this.bloom * 0.15).toFixed(3)})`;
+  
     /* highlight */
     blobMain.style.setProperty('--hx', `${clamp(34 - this.rollVel * HLIDE * 0.4, 15, 65).toFixed(1)}%`);
     blobMain.style.setProperty('--hy', `${clamp(28 - this.vy * HLIDE * 0.4, 12, 55).toFixed(1)}%`);

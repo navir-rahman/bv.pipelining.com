@@ -29,7 +29,7 @@ export default function Footer() {
           
           {/* Left Text */}
           <div className="space-y-2 text-center lg:text-left">
-            <span className="text-[11px] font-bold tracking-widest text-cyan-400 uppercase">
+            <span className="text-[11px] font-bold tracking-widest text-(--primary-color) uppercase">
               ARE YOU A TRENCHLESS CONTRACTOR?
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
@@ -48,7 +48,7 @@ export default function Footer() {
               className="inline-flex items-center space-x-2 px-6 py-3 rounded-full border border-slate-600 bg-slate-900/60 backdrop-blur-md text-white text-xs sm:text-sm font-medium hover:border-cyan-400 hover:bg-slate-900 transition-all shadow-lg group"
             >
               <span>Claim Your Listing</span>
-              <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 text-(--primary-color) group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
 

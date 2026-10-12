@@ -117,14 +117,14 @@ export default function HowItWorksSection() {
         
         {/* LEFT COLUMN: Text Content & Animated CTA */}
         <div className="lg:col-span-4 space-y-6">
-          <span className="text-xs font-bold tracking-[0.25em] text-cyan-400 uppercase">
+          <span className="text-xs font-bold tracking-[0.25em] text-(--primary-color) uppercase">
             HOW IT WORKS
           </span>
           
           <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-white tracking-tight leading-[1.12]">
             Find a contractor <br />
             in{' '}
-            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-shimmer">
+            <span className="bg-gradient-to-r  from-[#FFB347] via-[#FF830E] to-[#E85D04] bg-clip-text text-transparent animate-shimmer">
               3 simple steps
             </span>
           </h2>
@@ -140,7 +140,7 @@ export default function HowItWorksSection() {
               className="inline-flex items-center space-x-3 px-7 py-3 rounded-full border border-slate-700/80 bg-slate-900/80 text-slate-200 text-sm font-medium hover:border-cyan-400 hover:text-white hover:shadow-[0_0_25px_rgba(34,211,238,0.3)] transition-all duration-300 group backdrop-blur-md"
             >
               <span>Start Searching</span>
-              <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1.5 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 text-(--primary-color) group-hover:translate-x-1.5 transition-transform duration-300" />
             </a>
           </div>
         </div>

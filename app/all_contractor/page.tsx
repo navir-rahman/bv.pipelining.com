@@ -3,6 +3,7 @@
 import CardPortate from "@/components/card/cardPortate";
 import Filter from "@/components/filter/Filter";
 import GlassStatesMap from "@/components/Map/reactSimpleMap/ReactSimpleMap";
+import PipeRepairQuiz from "@/components/pipeRepairQuiz/PipeRepairQuiz";
 import { useEffect, useRef, useState } from "react";
 
 type Contractor = {
@@ -212,6 +213,11 @@ useEffect(() => {
                     </span>
                   </div>
                 </div>
+              </div>
+
+
+              <div className="flex items-center gap-6 bg-white/60 backdrop-blur-md border border-white/80 rounded-full px-6 py-3 shadow-sm w-fit">
+              <PipeRepairQuiz />
               </div>
             </div>
           </div>

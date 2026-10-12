@@ -11,6 +11,7 @@ const navLinks = [
   { name: 'All Contractors', href: '/all_contractor' },
   { name: 'Blog', href: '/blog' },
   { name: 'Single Post', href: '/singleBlog' },
+  { name: 'About Us', href: '/about_us' },
   
 ];
 
@@ -487,7 +488,7 @@ function Navbar() {
 
 
   return (
- <header className="w-fit  fixed bottom-10 left-1/2 z-50 rounded-[50px] -translate-x-1/2 border border-[#4DD0E1]/60 shadow-[0_0_25px_rgba(77,208,225,0.5)]">
+ <header className="w-max  fixed bottom-10 left-1/2 z-50 rounded-[50px] -translate-x-1/2 border border-[#4DD0E1]/60 shadow-[0_0_25px_rgba(77,208,225,0.5)]">
       <nav
         ref={navRef}
         className="nav"

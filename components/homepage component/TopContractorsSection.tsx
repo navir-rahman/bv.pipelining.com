@@ -117,11 +117,11 @@ export default function TopContractorsSection() {
                     index !== 0 ? 'lg:border-l lg:border-slate-200/80 lg:pl-6' : ''
                   }`}
                 >
-                  <div className="flex-shrink-0 w-11 h-11 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center text-blue-600 shadow-sm">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-full bg-gradient-to-br  to-orange-100 flex items-center justify-center text-(--primary-color) shadow-sm">
                     <Icon className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900 leading-snug">
+                    <h3 className="text-sm font-bold text-(--black) leading-snug">
                       {feature.title}
                     </h3>
                     <p className="text-xs text-slate-500 mt-1 leading-relaxed">
@@ -138,7 +138,7 @@ export default function TopContractorsSection() {
             
             {/* LEFT COLUMN */}
             <div className="lg:col-span-4 space-y-4">
-              <span className="text-[11px] font-bold tracking-wider text-blue-600 uppercase">
+              <span className="text-[11px] font-bold tracking-wider text-(--primary-color) uppercase">
                 FIND TRUSTED CONTRACTORS
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">

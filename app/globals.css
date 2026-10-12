@@ -18,6 +18,10 @@
   :root {
     /* --background: #62666b; */
     /* --foreground: #ededed; */
+    --primary-color: #ff830e;
+    --primary-color-deactive: #f9bf89;
+    --black:#020618;
+    --gray: #555;
   }
 }
 
@@ -160,10 +164,10 @@ body {
 
   border-radius: 30px;
 
-  color: #555;
+  color: var(--primary-color-deactive);
 
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: bold;
 
   cursor: pointer;
 
@@ -173,9 +177,12 @@ body {
 }
 
 .nav-btn.active {
-  color: #111;
+  color: var(--primary-color);
 }
 
+.nav-btn:hover {
+  color: var(--primary-color);
+}
 
 /* =========================================================
    WATER
@@ -196,7 +203,7 @@ body {
     48% 52% 55% 45% /
     53% 45% 55% 47%;
 
-  background: rgba(0, 255, 255, 0.15);
+  background: #ff6a000d;
 
   box-shadow:
     inset 18px 18px 20px #0000000d,
@@ -266,4 +273,18 @@ body {
     inset 18px 18px 20px #0000000d,
     inset -20px -20px 28px #ffffffe6,
     12px 18px 22px #00000012;
+}
+
+
+
+/* quiz */
+@keyframes quizIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

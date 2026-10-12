@@ -100,7 +100,7 @@ useEffect(() => {
           >
             <div className="w-full max-w-[650px]">
               <div className="mb-5">
-                <p className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.16em] text-cyan-400">
+                <p className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.16em] text-(--primary-color)">
                   The trusted directory for
                   trenchless contractors
                 </p>
@@ -110,7 +110,7 @@ useEffect(() => {
                 Find the right
                 <br />
                 contractor{" "}
-                <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-br from-[#FFB347] via-[#FF830E] to-[#E85D04] bg-clip-text text-transparent">
                   near you.
                 </span>
               </h1>
