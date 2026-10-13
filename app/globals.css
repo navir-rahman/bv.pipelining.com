@@ -20,6 +20,10 @@
     /* --foreground: #ededed; */
     --primary-color: #ff830e;
     --primary-color-deactive: #f9bf89;
+    --primary-color-100: #f8e2cd;
+    --primary-color-200: #f6c99f;
+    --primary-color-300: #f4b171;
+    --primary-color-400: #f29a43;
     --black:#020618;
     --gray: #555;
   }

@@ -62,7 +62,7 @@ export default function Footer() {
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <a href="#" className="flex items-center space-x-1 text-lg font-extrabold tracking-tight text-white">
-              <span className="text-cyan-400">@</span>
+              <span className="text-(--primary-color)">@</span>
               <span>pipelining</span>
               <span className="text-slate-400 font-normal">.com</span>
             </a>

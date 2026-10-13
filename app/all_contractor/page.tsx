@@ -158,7 +158,7 @@ useEffect(() => {
         <div className="fixed top-10 left-40 h-[50vh] w-[70%] will-change-transform" style={{ transform: `translate3d(${-progress * 30}vw, 0, 0)` }}>
           <div className="w-[30%] h-full">
             <div className="py-20 flex flex-col max-w-lg">
-              <p className="text-xs font-bold tracking-widest text-purple-600 uppercase mb-4">
+              <p className="text-xs font-bold tracking-widest text-(--primary-color) uppercase mb-4">
                 The Pipelining Network
               </p>
 
@@ -167,7 +167,7 @@ useEffect(() => {
                 <br />
                 contractors,
                 <br />
-                <span className="bg-gradient-to-br from-purple-600 to-blue-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-br from-(--primary-color) to-orange-700 bg-clip-text text-transparent">
                   mapped.
                 </span>
               </h1>
@@ -176,47 +176,10 @@ useEffect(() => {
                 Search, explore and connect with verified trenchless professionals across the U.S.
               </p>
 
-              <div className="flex items-center gap-6 bg-white/60 backdrop-blur-md border border-white/80 rounded-full px-6 py-3 shadow-sm w-fit">
-                <div className="flex items-center gap-3">
-                  <div className="flex flex-col">
-                    <span className="text-base font-bold text-slate-900 leading-none">
-                      1,248
-                    </span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold mt-0.5">
-                      Contractors
-                    </span>
-                  </div>
-                </div>
-
-                <div className="w-px h-8 bg-slate-200" />
-
-                <div className="flex items-center gap-3">
-                  <div className="flex flex-col">
-                    <span className="text-base font-bold text-slate-900 leading-none">
-                      312
-                    </span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold mt-0.5">
-                      Verified
-                    </span>
-                  </div>
-                </div>
-
-                <div className="w-px h-8 bg-slate-200" />
-
-                <div className="flex items-center gap-3">
-                  <div className="flex flex-col">
-                    <span className="text-base font-bold text-slate-900 leading-none">
-                      48
-                    </span>
-                    <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold mt-0.5">
-                      States
-                    </span>
-                  </div>
-                </div>
-              </div>
+  
 
 
-              <div className="flex items-center gap-6 bg-white/60 backdrop-blur-md border border-white/80 rounded-full px-6 py-3 shadow-sm w-fit">
+              <div className="flex items-center gap-6 bg-white/60 backdrop-blur-md border border-white/80 rounded-full  shadow-sm w-fit">
               <PipeRepairQuiz />
               </div>
             </div>

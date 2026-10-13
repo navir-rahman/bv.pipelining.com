@@ -180,7 +180,7 @@ export default function BlogPage() {
 
                 <Link
                   href="/all_contractor"
-                  className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:border-orange-400 hover:text-orange-500"
+                  className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-medium text-slate-700 transition hover:border-(--primary-color) hover:text-orange-500"
                 >
                   Find a contractor
                 </Link>
@@ -305,7 +305,7 @@ export default function BlogPage() {
                   id="blog-search"
                   type="search"
                   placeholder="Search articles..."
-                  className="h-12 w-full rounded-full border border-slate-200 bg-slate-50 px-5 text-sm outline-none transition placeholder:text-slate-400 focus:border-orange-400 focus:bg-white focus:ring-4 focus:ring-orange-100"
+                  className="h-12 w-full rounded-full border border-slate-200 bg-slate-50 px-5 text-sm outline-none transition placeholder:text-slate-400 focus:border-(--primary-color) focus:bg-white focus:ring-4 focus:ring-orange-100"
                 />
               </div>
             </div>
@@ -385,7 +385,7 @@ export default function BlogPage() {
             <div className="mt-16 flex justify-center">
               <button
                 type="button"
-                className="rounded-full border border-slate-300 bg-white px-7 py-3 text-sm font-medium text-slate-700 transition hover:border-orange-400 hover:text-orange-500"
+                className="rounded-full border border-slate-300 bg-white px-7 py-3 text-sm font-medium text-slate-700 transition hover:border-(--primary-color) hover:text-orange-500"
               >
                 Load more articles
               </button>
@@ -400,7 +400,7 @@ export default function BlogPage() {
                 <div className="absolute -right-20 -top-32 h-80 w-80 rounded-full bg-orange-500/20 blur-3xl" />
 
                 <div className="relative max-w-3xl">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-400">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-(--primary-color)">
                     Find the right professional
                   </p>
 
