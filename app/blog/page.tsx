@@ -1,20 +1,22 @@
-import type { Metadata } from "next";
+"use client";
+// import type { Metadata } from "next";
 import Link from "next/link";
+import { useState } from "react";
 
-export const metadata: Metadata = {
-  title: "Trenchless Construction Blog | Guides, Methods & Contractor Advice",
-  description:
-    "Explore practical guides about trenchless construction, pipe lining, pipe bursting, directional drilling, sewer rehabilitation, project costs, and choosing the right contractor.",
-  alternates: {
-    canonical: "/blog",
-  },
-  openGraph: {
-    title: "Trenchless Construction Blog | Pipelining Network",
-    description:
-      "Practical guides and expert information about trenchless construction, pipe rehabilitation, underground utilities, and contractors.",
-    type: "website",
-  },
-};
+// export const metadata: Metadata = {
+//   title: "Trenchless Construction Blog | Guides, Methods & Contractor Advice",
+//   description:
+//     "Explore practical guides about trenchless construction, pipe lining, pipe bursting, directional drilling, sewer rehabilitation, project costs, and choosing the right contractor.",
+//   alternates: {
+//     canonical: "/blog",
+//   },
+//   openGraph: {
+//     title: "Trenchless Construction Blog | Pipelining Network",
+//     description:
+//       "Practical guides and expert information about trenchless construction, pipe rehabilitation, underground utilities, and contractors.",
+//     type: "website",
+//   },
+// };
 
 const categories = [
   "All",
@@ -137,6 +139,7 @@ const blogSchema = {
 };
 
 export default function BlogPage() {
+  const [categoryFilter, setCategoryFilter] = useState("All");
   return (
     <>
       <script
@@ -166,8 +169,8 @@ export default function BlogPage() {
 
               <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-500 sm:text-xl">
                 Practical guides covering trenchless construction, pipe
-                rehabilitation, pipe replacement, directional drilling,
-                project planning, and finding qualified contractors.
+                rehabilitation, pipe replacement, directional drilling, project
+                planning, and finding qualified contractors.
               </p>
 
               <div className="mt-9 flex flex-wrap gap-3">
@@ -296,18 +299,6 @@ export default function BlogPage() {
                 </p>
               </div>
 
-              <div className="relative w-full lg:w-80">
-                <label htmlFor="blog-search" className="sr-only">
-                  Search articles
-                </label>
-
-                <input
-                  id="blog-search"
-                  type="search"
-                  placeholder="Search articles..."
-                  className="h-12 w-full rounded-full border border-slate-200 bg-slate-50 px-5 text-sm outline-none transition placeholder:text-slate-400 focus:border-(--primary-color) focus:bg-white focus:ring-4 focus:ring-orange-100"
-                />
-              </div>
             </div>
 
             <div className="mt-10 flex gap-2 overflow-x-auto pb-2">
@@ -316,10 +307,12 @@ export default function BlogPage() {
                   key={category}
                   type="button"
                   className={`whitespace-nowrap rounded-full px-5 py-2.5 text-sm font-medium transition ${
-                    index === 0
+                    
+                    category === categoryFilter
                       ? "bg-slate-950 text-white"
                       : "border border-slate-200 bg-white text-slate-600 hover:border-orange-300 hover:text-orange-500"
                   }`}
+                  onClick={() => setCategoryFilter(category)}
                 >
                   {category}
                 </button>
@@ -327,7 +320,8 @@ export default function BlogPage() {
             </div>
 
             <div className="mt-12 grid gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
-              {regularPosts.map((post) => (
+              {regularPosts.filter((post) => categoryFilter === "All" || post.category === categoryFilter).map((post) => (
+
                 <article
                   key={post.slug}
                   className="group flex flex-col overflow-hidden rounded-[26px] border border-slate-200 bg-white transition duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-[0_20px_50px_rgba(15,23,42,0.08)]"
@@ -379,6 +373,7 @@ export default function BlogPage() {
                     </Link>
                   </div>
                 </article>
+
               ))}
             </div>
 
@@ -410,8 +405,8 @@ export default function BlogPage() {
 
                   <p className="mt-5 max-w-2xl text-base leading-8 text-slate-400">
                     Explore contractors by location and service to find
-                    professionals who can evaluate your underground
-                    construction or rehabilitation project.
+                    professionals who can evaluate your underground construction
+                    or rehabilitation project.
                   </p>
 
                   <Link
